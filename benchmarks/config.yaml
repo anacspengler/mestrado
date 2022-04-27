@@ -1,0 +1,47 @@
+test:
+  workers:
+    type: local
+    number: 1
+  rounds:
+    - label: insert Patient
+      txNumber: #number of transactions
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: #transactions rate per second
+      callback: benchmarks/insertPatient.js
+    - label: insert D_Items
+      txNumber: #number of transactions
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: #transactions rate per second
+      callback: benchmarks/insertDitem.js
+    - label: insert Prescription
+      txNumber: #number of transactions
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: #transactions rate per second
+      callback: benchmarks/insertPrescription.js
+    - label: insert InputeventMv
+      txNumber: #number of transactions
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: #transactions rate per second
+      callback: benchmarks/insertInputeventMv.js
+    - label: query Patient by subjectId
+      txNumber: #number of transactions
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: #transactions rate per second
+      callback: benchmarks/queryPatientId.js
+monitor:
+  type:
+  - docker
+  docker:
+    names:
+    - all
+  interval: 1
